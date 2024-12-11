@@ -20,7 +20,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Build and test with Maven
-        run: mvn clean verify --file simple-api/pom.xml
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=tarifasalma15_devops-livecoding -Dsonar.organization=tarifasalma15 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}  --file ./simple-api/pom.xml
     # Job pour construire et pousser les images Docker
   build-and-push-docker-image:
     needs: test-backend  # Ce job s'exécute après que les tests du backend aient réussi
