@@ -1,0 +1,16 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/launch_database
+- name: Run MySQL container
+  docker_container:
+    name: my_database
+    image: mysql:latest
+    state: started
+    restart_policy: always
+    networks:
+      - name: my_app_network
+    env:
+      MYSQL_ROOT_PASSWORD: my_root_password
+      MYSQL_DATABASE: my_app_db
+      MYSQL_USER: my_app_user
+      MYSQL_PASSWORD: my_app_password
